@@ -137,3 +137,58 @@ Don’t just show code—show thinking:
 ---
 
 > This is a production-style file upload pipeline with resumable uploads, signed URLs, async processing, and secure delivery.”
+
+# Tech stack
+- Frontend: React + TypeScript + HeroUI
+- Backend: Node.js with Hono
+- Storage: S3-compatible
+- Uploads: Multipart or Tus (optional)
+- Queue: Cloudflare Workers KV
+- DB: Cloudflare D1
+- CDN (simulated): signed URLs
+- Package manager: pnpm
+
+## Instalation
+1. Clone the repository
+```bash
+git clone https://github.com/aryawrat-putra/faah.git
+cd faah
+```
+2. Install dependencies
+```bash
+pnpm install
+```
+3. Set up your accounts and get the required API keys from:
+   - [Cloudflare R2](https://developers.cloudflare.com/r2/)
+   - [Cloudflare D1](https://developers.cloudflare.com/d1/)
+
+4. Create a `.env` file with the following variables:
+```
+# S3-compatible storage
+S3_ENDPOINT=http://localhost:3031
+S3_ACCESS_KEY=your-access-key
+S3_SECRET_KEY=your-secret-key
+S3_BUCKET=faah-uploads
+
+# Database
+D1_DATABASE_ID=your-d1-database-id
+D1_DATABASE_TOKEN=your-d1-database-token
+
+# CDN (simulated)
+CDN_BASE_URL=http://localhost:3030
+```
+
+5. Run the server
+```bash
+pnpm run dev
+```
+
+## Build for production
+```bash
+pnpm run build
+```
+
+# Test
+```bash
+pnpm run test
+```
